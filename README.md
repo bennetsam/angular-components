@@ -56,17 +56,17 @@ A movie theater booking system demonstrating micro frontend architecture with An
 
 #### Sub-Projects:
 
-##### 🏠 Movie Host (Shell Application)
+##### Movie Host (Shell Application)
 - **Port:** 4201
 - **Role:** Host/container application
 - **Responsibilities:** Routes, shared layout, micro frontend orchestration
 
-##### 🎬 Movie List (Remote)
+##### Movie List (Remote)
 - **Port:** 4202
 - **Role:** Movie catalog micro frontend
 - **Features:** Movie browsing and selection
 
-##### 🎟️ Ticket Availability (Remote)
+##### Ticket Availability (Remote)
 - **Port:** 4203
 - **Role:** Booking micro frontend
 - **Features:** Seat selection and ticket availability
@@ -93,7 +93,7 @@ Access host at: 4201
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 All projects use:
 - **Angular:** 19.2.0
@@ -108,7 +108,7 @@ All projects use:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18.x or later
@@ -130,7 +130,7 @@ npm start
 
 ---
 
-## 📋 Development Ports
+## Development Ports
 
 | Project | Port | URL |
 |---------|------|-----|
@@ -142,7 +142,7 @@ npm start
 
 ---
 
-## 🧪 Testing
+## Testing
 
 Each project includes unit tests:
 
@@ -159,7 +159,7 @@ npm run test:watch
 
 ---
 
-## 📦 Building for Production
+## Building for Production
 
 ```bash
 # Navigate to project folder
@@ -173,7 +173,7 @@ npm run build
 
 ---
 
-## 🤝 Project Structure
+## Project Structure
 
 ```
 .
@@ -195,7 +195,7 @@ npm run build
 
 ---
 
-## 📖 Documentation
+## Documentation
 
 - [Date Range Picker - Complete Documentation](date-range-picker/README.md)
 - [Angular 19 Documentation](https://angular.dev)
@@ -204,7 +204,7 @@ npm run build
 
 ---
 
-## 🔗 Related Resources
+## Related Resources
 
 - **Angular Signals:** Modern reactive programming in Angular
 - **Standalone Components:** Component architecture without NgModules
@@ -213,7 +213,7 @@ npm run build
 
 ---
 
-## 📝 License
+## License
 
 Each project may have its own license. Check individual project folders for details.
 
