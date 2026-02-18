@@ -2,7 +2,7 @@
 
 A collection of Angular 19 projects demonstrating modern component development, signal-based architecture, and micro frontend patterns.
 
-## 📂 Projects Overview
+## Projects Overview
 
 ### 1. Date Range Picker
 **Location:** `date-range-picker/`  
@@ -12,13 +12,13 @@ A collection of Angular 19 projects demonstrating modern component development, 
 A fully-featured, highly configurable date range picker component built with Angular 19 standalone components and Signals. Implements `ControlValueAccessor` for seamless integration with Angular Forms (reactive and template-driven).
 
 **Key Features:**
-- 📅 Single or dual-month calendar views
-- 🎨 Customizable themes (dark, light, custom colors)
-- ⚡ Quick date presets (Today, Last 7 Days, Last 30 Days, etc.)
-- 📏 Configurable width and layout
-- ✅ Built-in validators (min/max date, range limits)
-- 🧪 Comprehensive unit test coverage
-- 🎯 Signal-based reactive architecture
+- Single or dual-month calendar views
+- Customizable themes (dark, light, custom colors)
+- Quick date presets (Today, Last 7 Days, Last 30 Days, etc.)
+- Configurable width and layout
+- Built-in validators (min/max date, range limits)
+- Comprehensive unit test coverage
+- Signal-based reactive architecture
 
 [View detailed documentation →](date-range-picker/README.md)
 
@@ -43,7 +43,7 @@ cd calendar
 npm install
 npm start
 ```
-Access at: http://localhost:4204
+Access at: 4204
 
 ---
 
@@ -89,7 +89,7 @@ npm install
 npm start
 ```
 
-Access host at: http://localhost:4201
+Access host at: 4201
 
 ---
 
