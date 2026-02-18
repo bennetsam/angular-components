@@ -51,3 +51,11 @@ export interface IWeekDate {
     title: string;
     date?: number;
 }
+
+export interface ITimeList {
+    time: string;
+    hour: number;
+    minute: number;
+    limit: number;
+    highlight?: boolean;
+}

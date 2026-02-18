@@ -1,0 +1,12 @@
+<div class="preset-container" [style.--preset-base-width]="width()">
+  @for (preset of presets(); track preset.label) {
+    <button
+      type="button"
+      class="preset-button"
+      [class.disabled]="disabled()"
+      [disabled]="disabled()"
+      (click)="onPresetClick(preset)">
+      {{ preset.label }}
+    </button>
+  }
+</div>

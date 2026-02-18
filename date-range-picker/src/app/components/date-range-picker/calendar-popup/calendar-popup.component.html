@@ -1,0 +1,103 @@
+<div class="calendar-popup" [class.dual-month]="showTwoMonths()" [style.--calendar-base-width]="width()">
+  <div class="calendar-header">
+    <button type="button" class="nav-button" (click)="onPreviousMonth()" aria-label="Previous month">
+      ‹
+    </button>
+    <div class="month-year">
+      @if (showTwoMonths() && twoMonthsMode() === 'previous-current') {
+        {{ secondMonthYear() }}
+      } @else {
+        {{ currentMonthYear() }}
+      }
+    </div>
+    @if (showTwoMonths()) {
+      <div class="month-year second-month-header">
+        @if (twoMonthsMode() === 'current-next') {
+          {{ secondMonthYear() }}
+        } @else {
+          {{ currentMonthYear() }}
+        }
+      </div>
+    }
+    <button type="button" class="nav-button" (click)="onNextMonth()" aria-label="Next month">
+      ›
+    </button>
+  </div>
+
+  <div class="calendar-container" [class.dual-calendar]="showTwoMonths()">
+    <!-- First Calendar (or only calendar if single month) -->
+    <div class="calendar-body">
+      <div class="weekday-headers">
+        @for (header of weekdayHeaders; track header) {
+          <div class="weekday-header">{{ header }}</div>
+        }
+      </div>
+
+      <div class="calendar-grid">
+        @for (day of (showTwoMonths() && twoMonthsMode() === 'previous-current' ? secondMonthDays() : calendarDays()); track day.date.toMillis()) {
+          <div
+            class="calendar-day"
+            [class.current-month]="day.isCurrentMonth"
+            [class.other-month]="!day.isCurrentMonth"
+            [class.today]="day.isToday"
+            [class.selected]="day.isSelected"
+            [class.in-range]="day.isInRange"
+            [class.range-start]="day.isRangeStart"
+            [class.range-end]="day.isRangeEnd"
+            [class.disabled]="day.isDisabled"
+            [class.weekend]="day.isWeekend"
+            (click)="onDayClick(day)"
+            (mouseenter)="onDayHover(day)"
+            (mouseleave)="onDayLeave()"
+            [attr.aria-label]="day.date.toFormat('dd MMMM yyyy')"
+            [attr.aria-disabled]="day.isDisabled">
+            {{ day.dayNumber }}
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Second Calendar (only shown when showTwoMonths is true) -->
+    @if (showTwoMonths()) {
+      <div class="calendar-body second-calendar">
+        <div class="weekday-headers">
+          @for (header of weekdayHeaders; track header) {
+            <div class="weekday-header">{{ header }}</div>
+          }
+        </div>
+
+        <div class="calendar-grid">
+          @for (day of (twoMonthsMode() === 'current-next' ? secondMonthDays() : calendarDays()); track day.date.toMillis()) {
+            <div
+              class="calendar-day"
+              [class.current-month]="day.isCurrentMonth"
+              [class.other-month]="!day.isCurrentMonth"
+              [class.today]="day.isToday"
+              [class.selected]="day.isSelected"
+              [class.in-range]="day.isInRange"
+              [class.range-start]="day.isRangeStart"
+              [class.range-end]="day.isRangeEnd"
+              [class.disabled]="day.isDisabled"
+              [class.weekend]="day.isWeekend"
+              (click)="onDayClick(day)"
+              (mouseenter)="onDayHover(day)"
+              (mouseleave)="onDayLeave()"
+              [attr.aria-label]="day.date.toFormat('dd MMMM yyyy')"
+              [attr.aria-disabled]="day.isDisabled">
+              {{ day.dayNumber }}
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="calendar-footer">
+    <button type="button" class="action-button clear-button" (click)="onClear()">
+      Clear
+    </button>
+    <button type="button" class="action-button cancel-button" (click)="onCancel()">
+      Cancel
+    </button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="demo-container">
+  <h2>Template-Driven Forms Demo</h2>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="dateRange">Select Date Range:</label>
+      <app-date-range-picker
+        name="dateRange"
+        [(ngModel)]="dateRange"
+        (rangeChanged)="onRangeChanged($event)"
+        [config]="{
+          showPresets: true,
+          startWithSunday: true,
+          placeholder: 'Choose dates'
+        }"
+        [presets]="presets"
+        required
+      />
+    </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+      <button type="button" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+
+  @if (submittedValue) {
+    <div class="result">
+      <h3>Submitted Value:</h3>
+      <pre>{{ submittedValue | json }}</pre>
+    </div>
+  }
+</div>

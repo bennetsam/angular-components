@@ -1,0 +1,7 @@
+npm config --location project set registry https://registry.npmjs.org/
+
+
+
+ npm install --registry=https://registry.npmjs.org/
+
+

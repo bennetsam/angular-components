@@ -34,11 +34,11 @@ export class CalendarService {
   week: number = 1;
   days: IDay[] = [];
 
-  options: ICalendarOptions = {
+  private options: ICalendarOptions = {
     enableOtherMonth: false,
     startWithSunday: true
   };
-  calendarView = new Map<string, IWeek>();
+  private calendarView = new Map<string, IWeek>();
 
   constructor() { }
 
@@ -53,7 +53,7 @@ export class CalendarService {
     this.calendarView.clear();
     this.updateWeekView(date, options);
 
-    this.updateOptions(options);
+    this.options = this.updateOptions(options);
     console.log(this.calendarWeek.size);
 
     // if the week has started but the month has not filled the week from the start, then show empty items for the items in the week.
@@ -173,11 +173,13 @@ export class CalendarService {
 
   }
 
-  updateOptions(opt?: ICalendarOptions): void {
+  updateOptions(opt?: ICalendarOptions): ICalendarOptions {
     this.options = {
       ...this.options,
       ...(opt ?? {})
     };
+
+    return this.options;
   }
 
   getOptions(): ICalendarOptions {

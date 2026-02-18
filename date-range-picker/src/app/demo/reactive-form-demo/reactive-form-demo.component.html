@@ -1,0 +1,45 @@
+<div class="demo-container">
+  <h2>Reactive Forms Demo</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="dateRange">Select Date Range (Max 90 days):</label>
+      <app-date-range-picker
+        formControlName="dateRange"
+        [config]="{
+          showPresets: true,
+          startWithSunday: false,
+          maxRangeDays: 90,
+          placeholder: 'Pick a date range'
+        }"
+        [presets]="presets"
+      />
+
+      @if (dateRangeControl?.invalid && dateRangeControl?.touched) {
+        <div class="error-message">
+          @if (dateRangeControl?.errors?.['required']) {
+            <p>Date range is required</p>
+          }
+          @if (dateRangeControl?.errors?.['invalidRange']) {
+            <p>End date must be after start date</p>
+          }
+          @if (dateRangeControl?.errors?.['maxRangeDays']) {
+            <p>Range cannot exceed {{ dateRangeControl?.errors?.['maxRangeDays'].max }} days</p>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+      <button type="button" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+
+  @if (submittedValue) {
+    <div class="result">
+      <h3>Submitted Value:</h3>
+      <pre>{{ submittedValue | json }}</pre>
+    </div>
+  }
+</div>

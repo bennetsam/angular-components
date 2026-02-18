@@ -1,0 +1,55 @@
+<div class="date-range-picker-container" [style.--date-picker-width]="config().width ?? '300px'">
+  <div class="input-wrapper">
+    <input
+      type="text"
+      class="date-input"
+      [class.focused]="isFocused()"
+      [class.disabled]="isDisabled()"
+      [value]="displayValue()"
+      [placeholder]="placeholder"
+      [disabled]="isDisabled()"
+      (click)="onInputClick()"
+      (blur)="onInputBlur()"
+      readonly
+      aria-label="Date range picker"
+    />
+
+    @if (showClearButton && displayValue() && !isDisabled()) {
+      <button
+        type="button"
+        class="clear-icon"
+        (click)="onClear(); $event.stopPropagation()"
+        aria-label="Clear date range">
+        ✕
+      </button>
+    }
+
+    <span class="calendar-icon">📅</span>
+  </div>
+
+  @if (isOpen()) {
+    <div class="popup-overlay" (click)="onCancel()"></div>
+    <div class="popup-container">
+      @if (showPresets && presets().length > 0) {
+        <app-preset-buttons
+          [presets]="presets()"
+          [disabled]="isDisabled()"
+          [width]="config().width ?? '300px'"
+          (presetSelected)="onPresetSelected($event)"
+        />
+      }
+
+      <app-calendar-popup
+        [startWithSunday]="config().startWithSunday ?? false"
+        [minDate]="config().minDate ?? null"
+        [maxDate]="config().maxDate ?? null"
+        [showTwoMonths]="config().showTwoMonths ?? false"
+        [twoMonthsMode]="config().twoMonthsMode ?? 'current-next'"
+        [customTheme]="config().customTheme"
+        [width]="config().width ?? '300px'"
+        (rangeComplete)="onRangeComplete($event)"
+        (cancelled)="onCancel()"
+      />
+    </div>
+  }
+</div>

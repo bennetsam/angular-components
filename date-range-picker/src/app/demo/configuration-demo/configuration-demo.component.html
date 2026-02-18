@@ -1,0 +1,507 @@
+<div class="demo-container">
+  <div class="page-header">
+    <h2>Configuration Examples</h2>
+    <p class="subtitle">Comprehensive showcase of all date range picker configuration options</p>
+  </div>
+
+  <div class="layout-container">
+    <!-- Left Sidebar with Vertical Tabs -->
+    <aside class="tabs-sidebar">
+      <nav class="tabs-nav">
+        @for (tab of tabs; track tab.id) {
+          <button
+            type="button"
+            class="tab-button"
+            [class.active]="isActiveTab(tab.id)"
+            (click)="setActiveTab(tab.id)">
+            <span class="tab-number">{{ tab.id }}</span>
+            <span class="tab-label">{{ tab.label }}</span>
+          </button>
+        }
+      </nav>
+    </aside>
+
+    <!-- Right Content Area -->
+    <main class="content-area">
+      <form [formGroup]="form">
+        <!-- Example 1: Basic -->
+        @if (isActiveTab(1)) {
+          <div class="example-content">
+            <h3>1. Basic Configuration</h3>
+            <p class="description">Default settings with presets enabled</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="basic"
+                  [config]="basicConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('basic') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(basicConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 2: Custom Format -->
+        @if (isActiveTab(2)) {
+          <div class="example-content">
+            <h3>2. Custom Date Format</h3>
+            <p class="description">Display format: YYYY-MM-DD (ISO format)</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="customFormat"
+                  [config]="customFormatConfig"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('customFormat') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(customFormatConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 3: Min/Max Constraints -->
+        @if (isActiveTab(3)) {
+          <div class="example-content">
+            <h3>3. Min/Max Date Constraints</h3>
+            <p class="description">Limit selection to ±3 months from today</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="constrained"
+                  [config]="constrainedConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('constrained') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(constrainedConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 4: Max Range Days -->
+        @if (isActiveTab(4)) {
+          <div class="example-content">
+            <h3>4. Maximum Range Limit</h3>
+            <p class="description">Cannot select more than 30 days</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="maxRange"
+                  [config]="maxRangeConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('maxRange') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(maxRangeConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 5: Single Day -->
+        @if (isActiveTab(5)) {
+          <div class="example-content">
+            <h3>5. Single Day Selection</h3>
+            <p class="description">Allow only single day selection (range of 0 days)</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="singleDay"
+                  [config]="singleDayConfig"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('singleDay') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(singleDayConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 6: Disabled -->
+        @if (isActiveTab(6)) {
+          <div class="example-content">
+            <h3>6. Disabled State</h3>
+            <p class="description">Read-only disabled picker</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="disabled"
+                  [config]="disabledConfig"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('disabled') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(disabledConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 7: Sunday Start -->
+        @if (isActiveTab(7)) {
+          <div class="example-content">
+            <h3>7. Sunday Start Week</h3>
+            <p class="description">Calendar week starts on Sunday instead of Monday</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="sundayStart"
+                  [config]="sundayStartConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('sundayStart') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(sundayStartConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 8: No Clear Button -->
+        @if (isActiveTab(8)) {
+          <div class="example-content">
+            <h3>8. No Clear Button</h3>
+            <p class="description">Clear button is hidden</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="noClear"
+                  [config]="noClearConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('noClear') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(noClearConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 9: Dual Month - Current + Next -->
+        @if (isActiveTab(9)) {
+          <div class="example-content">
+            <h3>9. Dual Month Display (Current + Next)</h3>
+            <p class="description">Show two months side-by-side: current and next month</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="dualNext"
+                  [config]="dualMonthNextConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('dualNext') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(dualMonthNextConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 10: Dual Month - Previous + Current -->
+        @if (isActiveTab(10)) {
+          <div class="example-content">
+            <h3>10. Dual Month Display (Previous + Current)</h3>
+            <p class="description">Show two months side-by-side: previous and current month</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="dualPrev"
+                  [config]="dualMonthPrevConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('dualPrev') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(dualMonthPrevConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 11: Dark Theme -->
+        @if (isActiveTab(11)) {
+          <div class="example-content">
+            <h3>11. Custom Theme - Dark Mode</h3>
+            <p class="description">Purple/dark color scheme</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="darkTheme"
+                  [config]="darkThemeConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('darkTheme') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(darkThemeConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 12: Green Theme -->
+        @if (isActiveTab(12)) {
+          <div class="example-content">
+            <h3>12. Custom Theme - Green</h3>
+            <p class="description">Green/nature color scheme</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="greenTheme"
+                  [config]="greenThemeConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('greenTheme') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(greenThemeConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 13: Custom Presets -->
+        @if (isActiveTab(13)) {
+          <div class="example-content">
+            <h3>13. Custom Presets</h3>
+            <p class="description">Custom quarterly presets instead of default ones</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="customPresets"
+                  [config]="customPresetsConfig"
+                  [presets]="customPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('customPresets') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(customPresetsConfig)}}</code></pre>
+                  <strong>Presets:</strong>
+                  <pre><code>['Q1 2026', 'Q2 2026', 'This Year']</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 14: Single Month Without Presets -->
+        @if (isActiveTab(14)) {
+          <div class="example-content">
+            <h3>14. Single Month Without Presets</h3>
+            <p class="description">Clean calendar view with single month, no preset buttons</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="singleMonthNoPresets"
+                  [config]="singleMonthNoPresetsConfig"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('singleMonthNoPresets') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(singleMonthNoPresetsConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 15: Dual Month Without Presets -->
+        @if (isActiveTab(15)) {
+          <div class="example-content">
+            <h3>15. Dual Month Without Presets</h3>
+            <p class="description">Two months side-by-side with no preset buttons</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="dualMonthNoPresets"
+                  [config]="dualMonthNoPresetsConfig"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('dualMonthNoPresets') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(dualMonthNoPresetsConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 16: Custom Width -->
+        @if (isActiveTab(16)) {
+          <div class="example-content">
+            <h3>16. Custom Width</h3>
+            <p class="description">Control the width of the date picker input (400px in this example)</p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="customWidth"
+                  [config]="customWidthConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('customWidth') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(customWidthConfig)}}</code></pre>
+                  <strong>Note:</strong>
+                  <pre><code>You can use any CSS width value: '300px', '100%', '20rem', etc.
+Default width is 300px when not specified.</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Example 17: All Features -->
+        @if (isActiveTab(17)) {
+          <div class="example-content highlight">
+            <h3>16. All Features Combined</h3>
+            <p class="description">
+              Dual months, custom theme, date constraints, max range, custom format, all enabled!
+            </p>
+
+            <div class="example-grid">
+              <div class="picker-section">
+                <app-date-range-picker
+                  formControlName="allFeatures"
+                  [config]="allFeaturesConfig"
+                  [presets]="defaultPresets"
+                />
+                <div class="value-display">
+                  <strong>Selected Value:</strong> <code>{{ getFormValue('allFeatures') | json }}</code>
+                </div>
+              </div>
+
+              <div class="config-section">
+                <div class="config-display">
+                  <strong>Config:</strong>
+                  <pre><code>{{getConfigCode(allFeaturesConfig)}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </form>
+    </main>
+  </div>
+</div>

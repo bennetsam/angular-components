@@ -62,9 +62,8 @@ export class CalendarComponent implements OnInit {
   }
 
   showOtherMonthDates(): void {
-    this.options = this.calendarService.getOptions();
-    this.calendarService.updateOptions({
-      enableOtherMonth: !this.options.enableOtherMonth
+    this.options = this.calendarService.updateOptions({
+      enableOtherMonth: !this.calendarService.getOptions().enableOtherMonth
     });
     this.currentSelection = this.calendarService.getCurrentSelection();
     const date = DateTime.local(this.currentSelection.year, this.currentSelection.month, FIRST_DAY_IN_MONTH);
@@ -72,9 +71,8 @@ export class CalendarComponent implements OnInit {
   }
 
   toggleSundayOption(): void {
-    this.options = this.calendarService.getOptions();
-    this.calendarService.updateOptions({
-      startWithSunday: !this.options.startWithSunday
+    this.options = this.calendarService.updateOptions({
+      startWithSunday: !this.calendarService.getOptions().startWithSunday
     });
     this.currentSelection = this.calendarService.getCurrentSelection();
     const date = DateTime.local(this.currentSelection.year, this.currentSelection.month, FIRST_DAY_IN_MONTH);
@@ -88,9 +86,13 @@ export class CalendarComponent implements OnInit {
   updateWeek(value: IDay): void {
     const date = DateTime.local(this.currentSelection.year, this.currentSelection.month, value.date as number);
     console.log(value);
-    this.calendarService.updateWeekView(date, this.options);
+    this.calendarService.updateWeekView(date, this.calendarService.getOptions());
     this.calendarView = this.calendarService.getWeekObj();
     this.days = [...this.days];
 
+  }
+
+  navigateToDate(date: DateTime): void {
+    this.createCalendar(date, this.options);
   }
 }

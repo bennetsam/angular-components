@@ -36,7 +36,8 @@
 		<week-view [daylist]="calendarWeek"
 							 [calendarView]="calendarView"
 							 [days]="days"
-							 [startWithSunday]="options.startWithSunday"></week-view>
+							 [startWithSunday]="options.startWithSunday"
+							 (navigateToDate)="navigateToDate($event)"></week-view>
 	</div>
 </div>
 }

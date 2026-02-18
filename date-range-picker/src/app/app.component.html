@@ -1,0 +1,18 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title }}</h1>
+    <nav>
+      <a routerLink="/configuration-demo" routerLinkActive="active">All Configurations</a>
+      <a routerLink="/reactive-demo" routerLinkActive="active">Reactive Forms</a>
+      <a routerLink="/template-driven-demo" routerLinkActive="active">Template-Driven Forms</a>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <router-outlet />
+  </main>
+
+  <footer class="app-footer">
+    <p>Angular 19 | TypeScript | Luxon | Signals | 90%+ Test Coverage</p>
+  </footer>
+</div>
